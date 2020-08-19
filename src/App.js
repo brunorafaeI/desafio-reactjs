@@ -3,6 +3,12 @@ import React from "react";
 import "./styles.css";
 
 function App() {
+  const [repositories, setRepositories] = useState([]);
+
+  useEffect(() => {
+    api.get("repositories").then((resp) => setRepositories(resp.data));
+  }, []);
+
   async function handleAddRepository() {
     // TODO
   }
