@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import api from "./services/api";
 
 import "./styles.css";
 
@@ -16,17 +18,13 @@ function App() {
       techs: ["Nodejs", "React Native", "ReactJS"],
     });
 
-    if (resp.status === 201) {
-      setRepositories([...repositories, resp.data]);
-    }
+    setRepositories([...repositories, resp.data]);
   }
 
   async function handleRemoveRepository(id) {
     const resp = await api.delete(`repositories/${id}`);
 
-    if (resp.status === 204) {
-      setRepositories([...repositories.filter((repo) => repo.id !== id)]);
-    }
+    setRepositories([...repositories.filter((repo) => repo.id !== id)]);
   }
 
   return (
